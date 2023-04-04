@@ -1,0 +1,315 @@
+---
+export const prerender = true;
+const { width = "1000px", height = "500px", delay = 5000 } = Astro.props;
+import { Icon } from "astro-icon";
+---
+
+<section class="carousel">
+    <div class="carousel-inner">
+        <Icon name="bi:chevron-right" id="prev" />
+
+        <ul class="carousel-list">
+            <li class="active">
+                <div class="book-container">
+                    <img
+                        src="book-page-2.png"
+                        alt="Book Image"
+                        class="book-image"
+                    />
+                    <div class="pages-top"></div>
+                    <div class="pages-side"></div>
+                    <div class="book-shadow"></div>
+                </div>
+
+                <div class="description-container">
+                    <h3>شماره ۴</h3>
+                    <h3>پس از سالها دوباره سمفونی مردگان، در کوچه های برفی</h3>
+                    <h3>پاییز ۹٦</h3>
+                    <div class="buy-buttons-container">
+                        <button class="active">خرید مستقیم</button>
+                        <button>فیدیبو</button>
+                        <button>طاقچه</button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="book-container">
+                    <img
+                        src="book-page-1.png"
+                        alt="Book Image"
+                        class="book-image"
+                    />
+                    <div class="pages-top"></div>
+                    <div class="pages-side"></div>
+                    <div class="book-shadow"></div>
+                </div>
+
+                <div class="description-container">
+                    <h3>شماره ۴</h3>
+                    <h3>پس از سالها دوباره سمفونی مردگان، در کوچه های برفی</h3>
+                    <h3>پاییز ۹٦</h3>
+                    <div class="buy-buttons-container">
+                        <button class="active">خرید مستقیم</button>
+                        <button>فیدیبو</button>
+                        <button>طاقچه</button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="book-container">
+                    <img
+                        src="book-page-1.png"
+                        alt="Book Image"
+                        class="book-image"
+                    />
+                    <div class="pages-top"></div>
+                    <div class="pages-side"></div>
+                    <div class="book-shadow"></div>
+                </div>
+                <div class="divider"></div>
+                <div class="description-container">
+                    <h3>شماره ۴</h3>
+                    <h3>پس از سالها دوباره سمفونی مردگان، در کوچه های برفی</h3>
+                    <h3>پاییز ۹٦</h3>
+                    <div class="buy-buttons-container">
+                        <button class="active">خرید مستقیم</button>
+                        <button>فیدیبو</button>
+                        <button>طاقچه</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <Icon name="bi:chevron-left" id="next" />
+    </div>
+    <div class="carousel-indicators">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</section>
+
+<style define:vars={{ width, height }}>
+    .book-shadow {
+        z-index: -2;
+        top: 80%;
+        left: 25%;
+        filter: blur(0.5rem);
+        position: absolute;
+        background: var(--color-text-primary);
+        transform: skew(-240deg, 10deg);
+        width: calc(var(--width) * 0.35);
+        height: 100px;
+    }
+    .buy-buttons-container button {
+        display: block;
+        cursor: pointer;
+        margin-top: 16px;
+        max-width: 385px;
+        min-width: 100%;
+        color: var(--color-secondary);
+        background: transparent;
+        border: 1px solid var(--color-secondary-light);
+        transition: background 200ms ease-in-out, scale 200ms ease-in-out;
+    }
+    .buy-buttons-container button.active {
+        color: var(--color-text-secondary);
+        background: var(--color-secondary-light);
+    }
+    .buy-buttons-container button:hover {
+        scale: 1.1;
+        color: var(--color-text-secondary);
+    }
+    .buy-buttons-container button.active:hover {
+        background: transparent;
+        color: var(--color-secondary);
+    }
+    .book-container {
+        position: relative;
+        height: 100%;
+        align-items: center;
+        justify-content: space-between;
+        width: fit-content;
+        display: flex;
+    }
+    .pages-top {
+        z-index: -1;
+        rotate: 10deg;
+        transform: skewX(-240deg);
+        background-color: var(--color-primary-dark);
+        position: absolute;
+        width: 100%;
+        height: 13px;
+        top: -11px;
+        left: 11px;
+    }
+    .pages-side {
+        z-index: -1;
+        transform: skewY(-25deg);
+        position: absolute;
+        width: 23px;
+        height: 100%;
+        background-color: var(--color-primary-dark);
+        top: 25px;
+        left: 99%;
+    }
+    .book-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform: skewY(10deg);
+    }
+
+    .dot {
+        height: 8px;
+        width: 8px;
+        border-radius: 1vw;
+        background-color: var(--color-primary-dark);
+    }
+    .dot.active {
+        background-color: var(--color-secondary-light);
+    }
+
+    .carousel-indicators {
+        justify-content: center;
+        margin-top: 16px;
+        display: flex;
+        gap: 8px;
+    }
+    .carousel {
+        padding: 12px 40px;
+        margin: 60px;
+    }
+    .carousel-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #next,
+    #prev {
+        z-index: 5;
+        cursor: pointer;
+        color: var(--color-text-primary-light);
+        height: 32px;
+    }
+    ul {
+        height: var(--height);
+        width: var(--width);
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        opacity: 0;
+        left: 0;
+        position: absolute;
+        text-align: center;
+        max-width: var(--width);
+        height: var(--height);
+        list-style: none;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+
+        display: flex;
+        flex-wrap: wrap;
+        text-align: start;
+        align-items: center;
+        justify-content: center;
+        gap: 130px;
+    }
+    li.active {
+        z-index: 1;
+        opacity: 1;
+        animation-delay: 500ms;
+    }
+
+    @keyframes slide-out-to-left {
+        0% {
+            opacity: 100%;
+        }
+        100% {
+            opacity: 0%;
+            translate: -200px;
+        }
+    }
+
+    @keyframes slide-out-to-right {
+        0% {
+            opacity: 100%;
+        }
+        100% {
+            opacity: 0%;
+            translate: 200px;
+        }
+    }
+    @keyframes slide-in-from-left {
+        0% {
+            translate: -200px;
+            opacity: 0%;
+        }
+        100% {
+            opacity: 100%;
+        }
+    }
+    @keyframes slide-in-from-right {
+        0% {
+            translate: 200px;
+            opacity: 0%;
+        }
+        100% {
+            opacity: 100%;
+        }
+    }
+    @media (max-width: 850px) {
+        .carousel {
+            margin: 0;
+            margin-top: 60px;
+        }
+        .carousel-indicators div {
+            display: none;
+        }
+        #next,
+        #prev {
+            display: none;
+        }
+        li {
+            justify-content: center;
+            align-items: center;
+        }
+        .carousel-inner {
+            align-items: center;
+            justify-content: center;
+        }
+    }
+</style>
+<script define:vars={{ delay }}>
+    const liEls = document.querySelectorAll(".carousel-list>li");
+    const indicatorEls = document.querySelectorAll(".carousel-indicators div");
+    console.log(indicatorEls);
+    const nextBtn = document.getElementById("next");
+    const prevBtn = document.getElementById("prev");
+    let index = 0;
+    let timer = setInterval(() => show(1), delay);
+    function show(increment) {
+        clearInterval(timer);
+        timer = setInterval(() => show(1), delay);
+        const prev = liEls[index];
+        const prevInd = indicatorEls[index];
+        index = (index + increment + liEls.length) % liEls.length;
+        const current = liEls[index];
+        const currentInd = indicatorEls[index];
+        if (increment > 0) {
+            current.style.animationName = "slide-in-from-left";
+            prev.style.animationName = "slide-out-to-right";
+        } else {
+            current.style.animationName = "slide-in-from-right";
+            prev.style.animationName = "slide-out-to-left";
+        }
+        prev.classList.remove("active");
+        prevInd.classList.remove("active");
+        current.classList.add("active");
+        currentInd.classList.add("active");
+        current.style.opacity = 0;
+    }
+    nextBtn.addEventListener("click", () => show(1));
+    prevBtn.addEventListener("click", () => show(-1));
+</script>

@@ -1,0 +1,104 @@
+---
+---
+
+<footer class="footer">
+    <div class="return-bar-container">
+        <div class="return-bar"></div>
+        <span>ابتدای صفحه</span>
+    </div>
+    <div class="descriptions">
+        <p>
+            آدرس: تهران ، خیابان شریعتی ضلع جنوب شرقی پل سید خندان، دانشکده برق
+            و کامپیوتر دانشگاه صنعتی خواجه نصیرالدین طوسی، ساختمان جدید اساتید،
+            اتاق ۱۰۸
+        </p>
+        <p>تلفن: 093824444444</p>
+        <p>پست الکترونیک: info@kntu.ac.ir</p>
+    </div>
+    <iframe
+        class="map"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1006.7897760654695!2d51.44843797139077!3d35.74010266684383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e03f23ef71155%3A0x50c1ae57983a32eb!2sK.N.Toosi%20University%20of%20Technology%2C%20Faculty%20of%20Electrical%20Engineering!5e0!3m2!1sen!2sde!4v1680628455585!5m2!1sen!2sde"
+        height="300"
+        width="507"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+    >
+    </iframe>
+    <img class="anjoman-logo" src="anjoman.svg" alt="انجمن علمی ادبیات" />
+</footer>
+<style>
+    .descriptions {
+        max-width: 507px;
+        padding-left: 60px;
+    }
+    .descriptions p {
+    }
+    .return-bar-container {
+        cursor: pointer;
+        display: flex;
+        position: absolute;
+        top: 76px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        transform: rotate(-90deg);
+        width: fit-content;
+        height: fit-content;
+        left: 0;
+    }
+    .return-bar-container span {
+        user-select: none;
+    }
+    .return-bar {
+        background: var(--color-text-secondary);
+        width: 94px;
+        height: 14px;
+    }
+    .map {
+        margin-top: 32px;
+    }
+    .footer {
+        z-index: -2;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 450px;
+        background: var(--color-secondary);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
+    }
+    .anjoman-logo {
+        z-index: -1;
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        width: 180px;
+        height: 180px;
+        mask-image: linear-gradient(
+            to top right,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0)
+        );
+        margin: 12px;
+    }
+    @media (max-width: 850px) {
+        .return-bar-container {
+            left: -24px;
+        }
+    }
+</style>
+<script>
+    const returnBar = document.querySelector(".return-bar-container");
+    returnBar.addEventListener("click", () => {
+        scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+        });
+    });
+</script>
