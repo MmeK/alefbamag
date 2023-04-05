@@ -100,11 +100,13 @@ import { Icon } from "astro-icon";
         right: 12px;
         width: 180px;
         height: 180px;
-        mask-image: linear-gradient(
+        /* mask-image: linear-gradient(
             to top right,
             rgba(0, 0, 0, 0.2),
             rgba(0, 0, 0, 0)
-        );
+        ); */
+        filter: opacity(0.2);
+        pointer-events: none;
         margin: 12px;
     }
     .socials {
@@ -121,6 +123,7 @@ import { Icon } from "astro-icon";
         display: flex;
     }
     .descriptions-logo img {
+        pointer-events: none;
         max-width: 64px;
         width: 100%;
         max-height: 64px;
