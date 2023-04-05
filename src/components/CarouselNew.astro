@@ -127,7 +127,7 @@ import BookShowcase from "./BookShowcase.astro";
     const indicatorEls = document.querySelectorAll(".carousel-indicators div");
     let currentIndex = 0;
     let itemWidth = carouselItem[0].clientWidth;
-    // let timer = setInterval(() => nextSlide(), delay);
+    let timer = setInterval(() => nextSlide(), delay);
     function moveCarousel() {
         carousel.style.transform = `translateX(${currentIndex * itemWidth}px)`;
         indicatorEls[currentIndex].classList.add("active");
