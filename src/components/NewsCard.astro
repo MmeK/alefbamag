@@ -1,0 +1,52 @@
+---
+const {
+    image = "news-photo-1.png",
+    title = "افتتاحیه دفتر انجمن علمی ادبیات",
+    url = "",
+    excerpt = "دانشکده برق و کامپیوتر، ساختمان اساتید جدید، اتاق 108",
+    date = "آذر 1401",
+} = Astro.props;
+---
+
+<div class="card">
+    <img class="card-img" src={image} alt={title} />
+    <h2 class="card-title">{title}</h2>
+    <p class="card-excerpt">{excerpt}</p>
+    <p class="card-date">{date}</p>
+</div>
+<style>
+    .card {
+        max-width: 273px;
+    }
+    .card-title {
+        font-family: Anjoman Variable;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 25px;
+        letter-spacing: 0em;
+        text-align: right;
+    }
+    .card-excerpt {
+        font-family: Anjoman Variable;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: right;
+    }
+    .card-img {
+        max-width: 273px;
+        width: 100%;
+    }
+    .card-date {
+        margin-top: 48px;
+        font-family: Anjoman Variable;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: right;
+
+        color: var(--color-text-primary-light);
+    }
+</style>

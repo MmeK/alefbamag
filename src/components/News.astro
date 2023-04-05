@@ -1,0 +1,27 @@
+---
+import StaggeredTitle from "./StaggeredTitle.astro";
+import NewsCard from "./NewsCard.astro";
+import ReadMore from "./ReadMore.astro";
+---
+
+<section>
+    <StaggeredTitle>آخرین اخبار</StaggeredTitle>
+    <div class="news-container">
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+    </div>
+    <ReadMore />
+</section>
+<style>
+    section {
+        position: relative;
+    }
+    .news-container {
+        justify-content: space-around;
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+</style>

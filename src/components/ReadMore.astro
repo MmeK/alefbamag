@@ -1,0 +1,14 @@
+---
+const { url = "" } = Astro.props;
+const title = "همه موارد";
+---
+
+<a href={url}><span class="more">{title}</span></a>
+<style>
+    .more {
+        position: absolute;
+        bottom: -12px;
+        left: 5%;
+        color: var(--color-secondary);
+    }
+</style>

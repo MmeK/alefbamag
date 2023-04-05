@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon";
 ---
 
 <footer class="footer">
@@ -7,6 +8,10 @@
         <span>ابتدای صفحه</span>
     </div>
     <div class="descriptions">
+        <div class="descriptions-logo">
+            <img src="anjoman.svg" alt="انجمن علمی ادبیات" />
+            <img src="anjoman-txt.svg" alt="Kntu Literature" />
+        </div>
         <p>
             آدرس: تهران ، خیابان شریعتی ضلع جنوب شرقی پل سید خندان، دانشکده برق
             و کامپیوتر دانشگاه صنعتی خواجه نصیرالدین طوسی، ساختمان جدید اساتید،
@@ -14,6 +19,14 @@
         </p>
         <p>تلفن: 093824444444</p>
         <p>پست الکترونیک: info@kntu.ac.ir</p>
+        <div class="socials">
+            <a href="https://instagram.com/adab.kntu/"
+                ><Icon class="icon" name="mdi:instagram" /></a
+            >
+            <a href="https://t.me/Adab_Kntu"
+                ><Icon class="icon" name="mdi:telegram" /></a
+            >
+        </div>
     </div>
     <iframe
         class="map"
@@ -60,17 +73,25 @@
         margin-top: 32px;
     }
     .footer {
-        z-index: -2;
-        position: absolute;
+        isolation: isolate;
+        position: relative;
         bottom: 0;
         width: 100%;
-        height: 450px;
+        min-height: 450px;
         background: var(--color-secondary);
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         padding: 24px;
+
+        font-family: Anjoman Variable;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: right;
+        color: var(--color-text-secondary);
     }
     .anjoman-logo {
         z-index: -1;
@@ -81,10 +102,31 @@
         height: 180px;
         mask-image: linear-gradient(
             to top right,
-            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.2),
             rgba(0, 0, 0, 0)
         );
         margin: 12px;
+    }
+    .socials {
+        user-select: none;
+    }
+    .socials .icon {
+        color: var(--color-text-secondary);
+        width: 32px;
+    }
+    .socials .icon:hover {
+        cursor: pointer;
+    }
+    .descriptions-logo {
+        display: flex;
+    }
+    .descriptions-logo img {
+        max-width: 64px;
+        width: 100%;
+        max-height: 64px;
+    }
+    .descriptions-logo img:last-child {
+        max-width: 238px;
     }
     @media (max-width: 850px) {
         .return-bar-container {

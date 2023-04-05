@@ -1,0 +1,225 @@
+---
+import { Icon } from "astro-icon";
+const { width = "1200px", height = "600px", delay = 5000 } = Astro.props;
+---
+
+<div class="carousel-container">
+    <div class="carousel">
+        <div class="carousel-item">
+            <div class="book-container">
+                <img
+                    src="book-page-2.png"
+                    alt="Book Image"
+                    class="book-image"
+                />
+                <div class="pages-top"></div>
+                <div class="pages-side"></div>
+                <div class="book-shadow"></div>
+            </div>
+
+            <div class="description-container">
+                <h3>شماره ۴</h3>
+                <h3>پس از سالها دوباره سمفونی مردگان، در کوچه های برفی</h3>
+                <h3>پاییز ۹٦</h3>
+                <div class="buy-buttons-container">
+                    <button class="active">خرید مستقیم</button>
+                    <button>فیدیبو</button>
+                    <button>طاقچه</button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">Item 2</div>
+        <div class="carousel-item">Item 3</div>
+    </div>
+    <Icon name="bi:chevron-right" id="prev" />
+    <Icon name="bi:chevron-left" id="next" />
+    <div class="carousel-indicators">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
+<style define:vars={{ width, height }}>
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        user-select: none;
+    }
+
+    .carousel {
+        margin-top: 60px;
+        margin-bottom: 60px;
+        display: flex;
+        width: 100%;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .carousel-item {
+        flex: 0 0 100%;
+        padding: 30px;
+        text-align: center;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: start;
+        align-items: center;
+        justify-content: center;
+        gap: 130px;
+    }
+    .dot {
+        height: 8px;
+        width: 8px;
+        border-radius: 1vw;
+        background-color: var(--color-primary-dark);
+    }
+    .dot.active {
+        background-color: var(--color-secondary-light);
+    }
+
+    .carousel-indicators {
+        justify-content: center;
+        margin-top: 16px;
+        display: flex;
+        gap: 8px;
+    }
+    #next,
+    #prev {
+        top: 50%;
+        position: absolute;
+        z-index: 5;
+        cursor: pointer;
+        color: var(--color-text-primary-lighter);
+        height: 32px;
+    }
+    #next {
+        left: 10%;
+    }
+    #prev {
+        right: 10%;
+    }
+    /* Book Effect */
+    .book-shadow {
+        z-index: -2;
+        top: 78%;
+        left: 30%;
+        filter: blur(0.7rem);
+        position: absolute;
+        background: var(--color-text-primary);
+        transform: skew(-240deg, 10deg);
+        width: calc(var(--width) * 0.35);
+        height: 140px;
+    }
+    .book-container {
+        position: relative;
+        max-height: var(--height);
+        align-items: center;
+        justify-content: space-between;
+        display: flex;
+    }
+    .book-image {
+        display: block;
+        max-width: 100%;
+        max-height: var(--height);
+        transform: skewY(10deg);
+    }
+    .pages-top {
+        z-index: -1;
+        rotate: 10deg;
+        transform: skewX(-240deg);
+        background-color: var(--color-primary-dark);
+        position: absolute;
+        width: 100%;
+        height: 13px;
+        top: -11px;
+        left: 11px;
+    }
+    .pages-side {
+        z-index: -1;
+        transform: skewY(-25deg);
+        position: absolute;
+        width: 23px;
+        height: 100%;
+        background-color: var(--color-primary-dark);
+        top: 5%;
+        left: 99%;
+    }
+
+    /* Buy Buttons */
+    .description-container {
+        max-width: 100%;
+    }
+    .buy-buttons-container button {
+        display: block;
+        cursor: pointer;
+        margin-top: 16px;
+        max-width: 365px;
+        min-width: 100%;
+        color: var(--color-secondary);
+        background: transparent;
+        border: 1px solid var(--color-secondary-light);
+        transition: background 200ms ease-in-out, scale 200ms ease-in-out;
+    }
+    .buy-buttons-container button.active {
+        color: var(--color-text-secondary);
+        background: var(--color-secondary-light);
+    }
+    .buy-buttons-container button:hover {
+        scale: 1.1;
+        color: var(--color-text-secondary);
+    }
+    .buy-buttons-container button.active:hover {
+        background: transparent;
+        color: var(--color-secondary);
+    }
+    @media (max-width: 1200px) {
+        #next,
+        #prev {
+            display: none;
+        }
+    }
+    @media (max-width: 850px) {
+        .carousel {
+            margin: 0;
+            margin-top: 60px;
+        }
+        .carousel-indicators div {
+            display: none;
+        }
+        .book-shadow {
+            display: none;
+        }
+    }
+</style>
+<script define:vars={{ delay }}>
+    let carousel = document.querySelector(".carousel");
+    let carouselItem = document.querySelectorAll(".carousel-item");
+    const indicatorEls = document.querySelectorAll(".carousel-indicators div");
+    let currentIndex = 0;
+    let itemWidth = carouselItem[0].clientWidth;
+    let timer = setInterval(() => nextSlide(), delay);
+    function moveCarousel() {
+        carousel.style.transform = `translateX(${currentIndex * itemWidth}px)`;
+        indicatorEls[currentIndex].classList.add("active");
+        clearInterval(timer);
+        timer = setInterval(() => nextSlide(), delay);
+    }
+
+    function nextSlide() {
+        indicatorEls[currentIndex].classList.remove("active");
+        currentIndex = (currentIndex + 1) % carouselItem.length;
+        itemWidth = carouselItem[currentIndex].clientWidth;
+        moveCarousel();
+    }
+
+    function prevSlide() {
+        indicatorEls[currentIndex].classList.remove("active");
+        currentIndex =
+            (currentIndex - 1 + carouselItem.length) % carouselItem.length;
+        itemWidth = carouselItem[currentIndex].clientWidth;
+        moveCarousel();
+    }
+
+    document.querySelector("#prev").addEventListener("click", prevSlide);
+    document.querySelector("#next").addEventListener("click", nextSlide);
+</script>

@@ -8,7 +8,7 @@ import { Icon } from "astro-icon";
         <div class="banner">
             <div class="menu-container">
                 <Icon class="menu" name="ic:round-menu" />
-                <Icon class="close" name="tabler:x" />
+                <Icon id="close" class="close" name="ion:close" />
             </div>
             <a href="/">
                 <img src="alefba.svg" alt="" srcset="" />
@@ -67,6 +67,7 @@ import { Icon } from "astro-icon";
     .menu-container {
         display: none;
         position: relative;
+        width: fit-content;
     }
     .menu,
     .close {
@@ -169,7 +170,7 @@ import { Icon } from "astro-icon";
 </style>
 <script>
     const menu = document.querySelector(".menu");
-    const closeMenu = document.querySelector(".close");
+    const closeMenu = document.querySelector("#close");
     const links = document.querySelector(".links");
     menu.addEventListener("click", () => {
         menu.style.display = "none";

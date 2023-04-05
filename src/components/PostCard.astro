@@ -1,0 +1,128 @@
+---
+const {
+    image,
+    author,
+    imageAlt = "",
+    excerpt,
+    date,
+    url = "",
+    title,
+} = Astro.props;
+const maxHeight = 10;
+---
+
+<div class="post-container">
+    <div class="image-container">
+        <img src={image} alt={imageAlt} />
+        <div>
+            <a class="title" href={url}><h3>{title}</h3></a>
+            <p class="author">{author}</p>
+            <p class="date">{date}</p>
+        </div>
+    </div>
+    <p class="excerpt">{excerpt}</p>
+</div>
+<hr class="post-end" />
+
+<style>
+    .title {
+        text-decoration: none;
+        color: var(--color-secondary-light);
+    }
+    .post-end {
+        color: var(--color-secondary-light);
+
+        width: 20%;
+        opacity: 1;
+    }
+    .post-end:last-child {
+        opacity: 0;
+    }
+    .image-container {
+        max-width: 150px;
+        display: flex;
+        flex-direction: column;
+    }
+    .author {
+        margin-bottom: 0;
+        margin-top: 8px;
+
+        color: var(--color-text-primary-light);
+
+        font-family: Anjoman Variable;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: right;
+    }
+    .date {
+        margin-bottom: 0;
+        margin-top: 8px;
+        color: var(--color-text-primary-light);
+
+        font-family: Anjoman Variable;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: right;
+    }
+    .post-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 48px;
+        padding: 0px 48px;
+    }
+    .excerpt {
+        flex: 1 1 350px;
+        max-width: 890px;
+        margin-top: 0;
+        color: black;
+
+        font-family: Anjoman Variable;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: right;
+    }
+    .read-more {
+        color: var(--color-secondary);
+    }
+    @media (max-width: 850px) {
+        .post-container {
+            gap: 12px;
+        }
+        img {
+            max-width: unset;
+        }
+        .post-end {
+            width: 50%;
+        }
+        .image-container {
+            flex-direction: row;
+            max-width: unset;
+            width: 100%;
+            gap: 24px;
+        }
+    }
+</style>
+<script>
+    // import shave from "shave";
+    const excerpt = document.querySelector(".excerpt");
+
+    // shave(".excerpt", 60, {
+    //     charclassname: excerpt.className + " read-more",
+    //     link: { href: "https://www.google.com", textContent: " ادامه..." },
+    //     spaces: false,
+    // });
+
+    // const readMoreSpan = document.createElement("a");
+    // readMoreSpan.textContent += " ادامه...";
+    // readMoreSpan.setAttribute("href", "");
+    // readMoreSpan.className = excerpt.className;
+    // readMoreSpan.classList.remove("excerpt");
+    // readMoreSpan.classList.add("read-more");
+    // excerpt.appendChild(readMoreSpan);
+</script>

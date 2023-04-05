@@ -1,0 +1,32 @@
+<div class="container">
+    <h1><slot /></h1>
+    <div class="box"></div>
+</div>
+<style>
+    .container {
+        margin-right: 140px;
+        position: relative;
+    }
+    .box {
+        z-index: -1;
+        position: absolute;
+        background-color: var(--color-secondary-light);
+        height: 14px;
+        width: 88px;
+        top: 50%;
+        right: -3%;
+    }
+    @media (max-width: 1200px) {
+        .container {
+            margin-right: 69px;
+        }
+    }
+    @media (max-width: 850px) {
+        .container {
+            margin-right: 40%;
+        }
+        .box {
+            right: -10%;
+        }
+    }
+</style>

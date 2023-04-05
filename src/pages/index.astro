@@ -1,12 +1,17 @@
 ---
 export const prerender = true;
 import MainLayout from "../layouts/MainLayout.astro";
-import MagazineCarousel from "../components/MagazineCarousel.astro";
+import News from "../components/News.astro";
+import CarouselNew from "../components/CarouselNew.astro";
+import Posts from "../components/Posts.astro";
 // import { homePagePostsQuery } from "../lib/api";
 // const data = await homePagePostsQuery();
 // const posts = data.posts.nodes;
+import StaggeredTitle from "../components/StaggeredTitle.astro";
 ---
 
 <MainLayout>
-    <!-- <MagazineCarousel /> -->
+    <CarouselNew />
+    <News />
+    <Posts />
 </MainLayout>
