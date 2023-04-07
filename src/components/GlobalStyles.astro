@@ -16,11 +16,17 @@
     html {
         font-size: 16px; /* set the base font size */
         scroll-behavior: smooth; /* add smooth scrolling to the page */
+        height: 100%;
     }
 
     body {
         margin: 0;
         padding: 0;
+        min-height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         font-family: Times, serif; /* set the default font */
         background-color: var(--color-primary); /* set the background color */
         color: var(--color-text-primary); /* set the default text color */

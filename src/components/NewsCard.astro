@@ -4,7 +4,7 @@ const { image, title, url, excerpt, date } = Astro.props;
 
 <div class="card">
     <img class="card-img" src={image} alt={title} />
-    <h2 class="card-title">{title}</h2>
+    <a class="card-title" href={url}><h2>{title}</h2></a>
     <p class="card-excerpt">{excerpt}</p>
     <p class="card-date">{date}</p>
 </div>
@@ -19,6 +19,8 @@ const { image, title, url, excerpt, date } = Astro.props;
         line-height: 25px;
         letter-spacing: 0em;
         text-align: right;
+        color: black;
+        text-decoration: none;
     }
     .card-excerpt {
         font-family: Anjoman Variable;
