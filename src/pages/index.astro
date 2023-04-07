@@ -3,13 +3,13 @@ import MainLayout from "../layouts/MainLayout.astro";
 import News from "../components/News.astro";
 import CarouselNew from "../components/CarouselNew.astro";
 import Posts from "../components/Posts.astro";
-// import { homePagePostsQuery } from "../lib/api";
-// const data = await homePagePostsQuery();
-// const posts = data.posts.nodes;
+import { getAllMagazines, getAllNews } from "../lib/api";
+const books = await getAllMagazines();
+let news = await getAllNews();
 ---
 
 <MainLayout title="مجله الفبا">
-    <CarouselNew />
-    <News />
+    <CarouselNew books={books} length={4} />
+    <News news={news} length={4} />
     <Posts />
 </MainLayout>

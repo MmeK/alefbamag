@@ -2,41 +2,31 @@
 import StaggeredTitle from "./StaggeredTitle.astro";
 import NewsCard from "./NewsCard.astro";
 import ReadMore from "./ReadMore.astro";
+import NothingHere from "./NothingHere.astro";
+const MAX_LENGTH = 10000;
+const { news, length = MAX_LENGTH } = Astro.props;
 ---
 
 <section>
     <StaggeredTitle>آخرین اخبار</StaggeredTitle>
     <div class="news-container">
-        <NewsCard
-            image="news-photo-1.png"
-            title="افتتاحیه دفتر انجمن علمی ادبیات"
-            url=""
-            excerpt="دانشکده برق و کامپیوتر، ساختمان اساتید جدید، اتاق 108"
-            date="آذر 1401"
-        />
-        <NewsCard
-            image="news-photo-2.png"
-            title="افتتاحیه دفتر انجمن علمی ادبیات"
-            url=""
-            excerpt="دانشکده برق و کامپیوتر، ساختمان اساتید جدید، اتاق 108"
-            date="آذر 1401"
-        />
-        <NewsCard
-            image="news-photo-1.png"
-            title="افتتاحیه دفتر انجمن علمی ادبیات"
-            url=""
-            excerpt="دانشکده برق و کامپیوتر، ساختمان اساتید جدید، اتاق 108"
-            date="آذر 1401"
-        />
-        <NewsCard
-            image="news-photo-1.png"
-            title="افتتاحیه دفتر انجمن علمی ادبیات"
-            url=""
-            excerpt="دانشکده برق و کامپیوتر، ساختمان اساتید جدید، اتاق 108"
-            date="آذر 1401"
-        />
+        <NothingHere />
+
+        {
+            news.slice(0, length).map((item) => {
+                return (
+                    <NewsCard
+                        image={item.image}
+                        title={item.title}
+                        url={item.url}
+                        excerpt={item.excerpt}
+                        date={item.date}
+                    />
+                );
+            })
+        }
     </div>
-    <ReadMore />
+    {length !== MAX_LENGTH && <ReadMore url="news/1" />}
 </section>
 <style>
     section {
@@ -46,6 +36,7 @@ import ReadMore from "./ReadMore.astro";
         justify-content: space-around;
         display: flex;
         gap: 40px;
+        padding: 10px 10%;
         flex-wrap: wrap;
         margin-bottom: 20px;
     }

@@ -1,0 +1,21 @@
+<div class="container">
+    <p class="nothing">هیچ موردی برای نمایش وجود ندارد</p>
+</div>
+<style>
+    .container {
+        display: none;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+    .container:only-child {
+        display: flex;
+    }
+
+    .nothing {
+        color: var(--color-secondary);
+        font-size: xx-large;
+        font-weight: bold;
+    }
+</style>

@@ -1,12 +1,16 @@
 ---
 const { image, title, url, excerpt, date } = Astro.props;
+const formattedDate = new Date(date).toLocaleDateString("fa-IR", {
+    month: "long",
+    year: "numeric",
+});
 ---
 
 <div class="card">
     <img class="card-img" src={image} alt={title} />
     <a class="card-title" href={url}><h2>{title}</h2></a>
-    <p class="card-excerpt">{excerpt}</p>
-    <p class="card-date">{date}</p>
+    <p class="card-excerpt" set:html={excerpt} />
+    <p class="card-date">{formattedDate}</p>
 </div>
 <style>
     .card {

@@ -20,7 +20,7 @@ const {
 
 <div class="description-container">
     <h3 class="title">{bookTitle}</h3>
-    <h3 class="subtitle">{bookSubtitle}</h3>
+    <h3 class="subtitle" set:html={bookSubtitle} />
     <h3 class="date">{publishDate}</h3>
     <div class="buy-buttons-container">
         <a href={buyUrl} class="active">خرید مستقیم</a>
@@ -89,7 +89,8 @@ const {
         cursor: pointer;
         margin-top: 16px;
         max-width: 365px;
-        min-width: 100%;
+        width: 100%;
+        text-decoration: none;
         color: var(--color-secondary);
         background: transparent;
         border: 1px solid var(--color-secondary-light);

@@ -1,48 +1,46 @@
 ---
 import { Icon } from "astro-icon";
-const { width = "1200px", height = "600px", delay = 5000 } = Astro.props;
+const {
+    width = "1200px",
+    height = "600px",
+    delay = 5000,
+    books,
+    length = 10000,
+} = Astro.props;
 import BookShowcase from "./BookShowcase.astro";
 ---
 
 <div class="carousel-container">
     <div class="carousel">
-        <div class="carousel-item">
-            <BookShowcase
-                width={width}
-                height={height}
-                bookImage="alefba4.png"
-                bookTitle="شماره ٤"
-                bookSubtitle="پس از سالها دوباره سمفونی مردگان، در کوچه های برفی"
-                publishDate="پاییز ۹٦"
-            />
-        </div>
-        <div class="carousel-item">
-            <BookShowcase
-                width={width}
-                height={height}
-                bookImage="alefba4.png"
-                bookTitle="شماره ۵"
-                bookSubtitle="پس از سالها دوباره سمفونی مردگان، در کوچه های برفی"
-                publishDate="پاییز ۹٦"
-            />
-        </div>
-        <div class="carousel-item">
-            <BookShowcase
-                width={width}
-                height={height}
-                bookImage="alefba4.png"
-                bookTitle="شماره ۶"
-                bookSubtitle="پس از سالها دوباره سمفونی مردگان، در کوچه های برفی"
-                publishDate="پاییز ۹٦"
-            />
-        </div>
+        {
+            books.slice(0, length).map((book) => {
+                return (
+                    <div class="carousel-item">
+                        <BookShowcase
+                            width={width}
+                            height={height}
+                            bookImage={book.bookImage}
+                            bookTitle={book.bookTitle}
+                            bookSubtitle={book.bookSubtitle}
+                            publishDate={book.publishDate}
+                            fidiboUrl={book.fidiboUrl}
+                            TaagcheUrl={book.TaagcheUrl}
+                            buyUrl={book.buyUrl}
+                        />
+                    </div>
+                );
+            })
+        }
     </div>
     <Icon name="bi:chevron-right" id="prev" />
     <Icon name="bi:chevron-left" id="next" />
     <div class="carousel-indicators">
         <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+        {
+            [...Array(books.slice(0, length).length - 1).keys()].map((_) => {
+                return <div class="dot" />;
+            })
+        }
     </div>
 </div>
 <style define:vars={{ width, height }}>

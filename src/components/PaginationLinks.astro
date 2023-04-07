@@ -1,0 +1,29 @@
+---
+const { url } = Astro.props;
+---
+
+<div class="links-container">
+    {url.prev ? <a href={url.prev}>صفحه قبل</a> : null}
+    {url.next ? <a href={url.next}>صفحه بعد</a> : null}
+</div>
+
+<style>
+    a {
+        text-decoration: none;
+        color: var(--color-secondary-light);
+        font-size: larger;
+        font-weight: bold;
+        border: 1px solid var(--color-secondary);
+        padding: 4px 24px;
+        margin-bottom: 24px;
+
+        transition: scale 200ms ease;
+    }
+    a:hover {
+        scale: 1.1;
+    }
+    .links-container {
+        display: flex;
+        justify-content: space-around;
+    }
+</style>
