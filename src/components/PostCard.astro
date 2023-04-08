@@ -22,7 +22,7 @@ const newExcerpt = excerpt.split(">")[1].split("<")[0];
     <div class="image-container">
         <img src={image} alt={imageAlt} />
         <div>
-            <a class="title" href={"/blog/" + url}><h3>{title}</h3></a>
+            <a class="title" href={url}><h3>{title}</h3></a>
             <p class="author">{author}</p>
             <p class="date">{processDate ? formattedDate : date}</p>
         </div>

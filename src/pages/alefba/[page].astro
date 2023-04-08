@@ -21,7 +21,7 @@ const { page } = Astro.props;
                         <Card
                             image={item.bookSimpleImage}
                             title={item.bookTitle}
-                            url={item.slug}
+                            url={"/alefba/" + item.slug}
                             excerpt={item.bookSubtitle}
                             date={item.publishDate}
                             processDate={false}

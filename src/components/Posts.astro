@@ -19,7 +19,7 @@ const { posts, length = MAX_LENGTH } = Astro.props;
                         image={item.image}
                         title={item.title}
                         author={item.author}
-                        url={item.slug}
+                        url={"/blog/" + item.slug}
                         id={item.id}
                         excerpt={item.excerpt}
                         date={item.date}

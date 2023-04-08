@@ -18,7 +18,7 @@ const { news, length = MAX_LENGTH } = Astro.props;
                     <Card
                         image={item.image}
                         title={item.title}
-                        url={item.slug}
+                        url={"/news/" + item.slug}
                         excerpt={item.excerpt}
                         date={item.date}
                     />
