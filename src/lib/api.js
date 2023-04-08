@@ -35,6 +35,9 @@ export async function getAllMagazines(){
             }
           }
           alefbaa {
+            simplePicture{
+              mediaItemUrl
+            }
             date
             fidibo
             idpay
@@ -49,10 +52,13 @@ export async function getAllMagazines(){
   return data?.magazines.edges.map((item) => {
     return {
         bookImage: item.node.featuredImage.node.mediaItemUrl,
+        bookSimpleImage: item.node.alefbaa.simplePicture.mediaItemUrl,
         bookTitle: item.node.title,
         publishDate: item.node.alefbaa.date,
         bookSubtitle: item.node.content.split('>')[1].split('<')[0].substring(0,100)+"...",
         content: item.node.content,
+        slug: item.node.slug,
+        id: item.node.id,
         fidiboUrl: item.node.alefbaa.fidibo,
         buyUrl: item.node.alefbaa.idpay,
         TaagcheUrl: item.node.alefbaa.taaghche,
@@ -68,6 +74,8 @@ export async function getAllNews(){
           node {
             date
             title
+            slug
+            id
             featuredImage {
               node {
                 mediaItemUrl
@@ -86,9 +94,73 @@ export async function getAllNews(){
         image: item.node.featuredImage.node.mediaItemUrl,
         title: item.node.title,
         date: item.node.date,
+        slug: item.node.slug,
+        id: item.node.id,
         excerpt: item.node.content.split('>')[1].split('<')[0].substring(0,100)+"...",
         content: item.node.content
     };
   })
 }
-export async function getAllPosts(){}
+export async function getAllPosts(){
+  const data = await fetchAPI(
+    `
+    {
+      posts(where:{ orderby: { field: DATE, order: DESC } }) {
+        edges {
+          node {
+            post {
+              author
+            }
+            title
+            excerpt
+            date
+            slug
+            id
+            content
+            featuredImage {
+              node {
+                mediaItemUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    `
+  );
+
+  return data?.posts.edges.map((item) => {
+    return {
+        image: item.node.featuredImage.node.mediaItemUrl,
+        title: item.node.title,
+        author: item.node.post.author,
+        slug: item.node.slug,
+        id: item.node.id,
+        date: item.node.date,
+        excerpt: item.node.excerpt,
+        content: item.node.content
+    };
+  })
+}
+
+export async function getAllPostSlugs(){
+  const data = await fetchAPI(
+    `
+    {
+      posts(where:{ orderby: { field: DATE, order: DESC } }) {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+    `
+  );
+
+  return data?.posts.edges.map((item) => {
+    return {
+        slug: item.node.slug,
+    };
+  })
+}

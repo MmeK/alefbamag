@@ -6,21 +6,28 @@ const {
     excerpt,
     date,
     url = "",
+    id,
     title,
+    processDate = true,
 } = Astro.props;
+const formattedDate = new Date(date).toLocaleDateString("fa-IR", {
+    month: "long",
+    year: "numeric",
+});
 const maxHeight = 10;
+const newExcerpt = excerpt.split(">")[1].split("<")[0];
 ---
 
 <div class="post-container">
     <div class="image-container">
         <img src={image} alt={imageAlt} />
         <div>
-            <a class="title" href={url}><h3>{title}</h3></a>
+            <a class="title" href={"/blog/" + url}><h3>{title}</h3></a>
             <p class="author">{author}</p>
-            <p class="date">{date}</p>
+            <p class="date">{processDate ? formattedDate : date}</p>
         </div>
     </div>
-    <p class="excerpt">{excerpt}</p>
+    <p class="excerpt" set:html={newExcerpt} />
 </div>
 <hr class="post-end" />
 

@@ -1,6 +1,6 @@
 ---
 import StaggeredTitle from "./StaggeredTitle.astro";
-import NewsCard from "./NewsCard.astro";
+import Card from "./Card.astro";
 import ReadMore from "./ReadMore.astro";
 import NothingHere from "./NothingHere.astro";
 const MAX_LENGTH = 10000;
@@ -15,10 +15,10 @@ const { news, length = MAX_LENGTH } = Astro.props;
         {
             news.slice(0, length).map((item) => {
                 return (
-                    <NewsCard
+                    <Card
                         image={item.image}
                         title={item.title}
-                        url={item.url}
+                        url={item.slug}
                         excerpt={item.excerpt}
                         date={item.date}
                     />

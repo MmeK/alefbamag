@@ -1,0 +1,22 @@
+---
+const { url = "" } = Astro.props;
+const title = "بازگشت";
+---
+
+<a href={url}><span class="return">{title}</span></a>
+<style>
+    .return {
+        position: absolute;
+        bottom: 5%;
+        left: 2%;
+        border: 1px solid var(--color-secondary-light);
+        padding: 2px 16px;
+        color: var(--color-secondary);
+        transition: scale 200ms ease, background-color 200ms ease;
+    }
+    .return:hover {
+        scale: 1.05;
+        color: var(--color-text-secondary);
+        background: var(--color-secondary-light);
+    }
+</style>
