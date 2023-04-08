@@ -10,12 +10,10 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/vercel": "^3.2.2",
 		"astro": "^2.2.1",
 		"astro-icon": "^0.8.0"
 	},
 	"devDependencies": {
-		"dotenv": "^16.0.3",
-		"shave": "^5.0.2"
+		"dotenv": "^16.0.3"
 	}
 }
