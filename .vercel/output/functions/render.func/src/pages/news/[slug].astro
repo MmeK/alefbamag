@@ -1,0 +1,69 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getAllNews } from "../../lib/api";
+import Return from "../../components/Return.astro";
+export async function getStaticPaths() {
+    const news = await getAllNews();
+    return news.map((newsItem) => {
+        return {
+            params: { slug: decodeURI(newsItem.slug) },
+            props: { newsItem },
+        };
+    });
+}
+const { slug } = Astro.params;
+const { newsItem, processDate = true } = Astro.props;
+const formattedDate = new Date(newsItem.date).toLocaleDateString("fa-IR", {
+    month: "long",
+    year: "numeric",
+});
+---
+
+<MainLayout>
+    <main>
+        <Return url="/news/1" />
+        <img src={newsItem.image} alt={newsItem.title} />
+        <h2>{newsItem.title}</h2>
+        <p class="content" set:html={newsItem.content} />
+        <p class="date">{processDate ? formattedDate : newsItem.date}</p>
+    </main>
+</MainLayout>
+<style>
+    main {
+        padding: 64px 24px;
+        position: relative;
+        margin-top: 12px;
+        align-self: flex-start;
+        max-width: 90%;
+        width: 100%;
+    }
+    .title {
+        text-decoration: none;
+        color: var(--color-secondary-light);
+    }
+    .author {
+        margin-bottom: 0;
+        margin-top: 8px;
+
+        color: var(--color-text-primary-light);
+
+        font-family: Anjoman Variable;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: right;
+    }
+    .date {
+        margin-bottom: 0;
+        margin-top: 8px;
+        color: var(--color-text-primary-light);
+
+        font-family: Anjoman Variable;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: right;
+    }
+</style>

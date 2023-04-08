@@ -1,0 +1,49 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getAllMagazines, getAllNews, getAllPosts } from "../../lib/api";
+import PaginationLinks from "../../components/PaginationLinks.astro";
+import NothingHere from "../../components/NothingHere.astro";
+import Card from "../../components/Card.astro";
+export async function getStaticPaths({ paginate }) {
+    let magazines = await getAllMagazines();
+    return paginate(magazines, { pageSize: 12 });
+}
+const { page } = Astro.props;
+---
+
+<MainLayout title="الفبا">
+    <section>
+        <div class="mags-container">
+            <NothingHere />
+            {
+                page.data.map((item) => {
+                    return (
+                        <Card
+                            image={item.bookSimpleImage}
+                            title={item.bookTitle}
+                            url={item.slug}
+                            excerpt={item.bookSubtitle}
+                            date={item.publishDate}
+                            processDate={false}
+                        />
+                    );
+                })
+            }
+        </div>
+    </section>
+
+    <PaginationLinks url={page.url} />
+</MainLayout>
+<style>
+    section {
+        position: relative;
+    }
+    .mags-container {
+        justify-content: space-around;
+        display: flex;
+        gap: 40px;
+        padding: 48px 10%;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+</style>

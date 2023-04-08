@@ -1,0 +1,16 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getAllNews } from "../../lib/api";
+import News from "../../components/News.astro";
+import PaginationLinks from "../../components/PaginationLinks.astro";
+export async function getStaticPaths({ paginate }) {
+    let newsItems = await getAllNews();
+    return paginate(newsItems, { pageSize: 12 });
+}
+const { page } = Astro.props;
+---
+
+<MainLayout title="خبرنامه">
+    <News news={page.data} />
+    <PaginationLinks url={page.url} />
+</MainLayout>

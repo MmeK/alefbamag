@@ -1,0 +1,66 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getAllPosts } from "../../lib/api";
+import Return from "../../components/Return.astro";
+export async function getStaticPaths() {
+    let posts = await getAllPosts();
+    return posts.map((post) => {
+        return { params: { slug: decodeURI(post.slug) }, props: { post } };
+    });
+}
+const { slug } = Astro.params;
+const { post, processDate = true } = Astro.props;
+const formattedDate = new Date(post.date).toLocaleDateString("fa-IR", {
+    month: "long",
+    year: "numeric",
+});
+---
+
+<MainLayout>
+    <main>
+        <Return url="/blog/1" />
+        <img src={post.image} alt={post.title} />
+        <h2>{post.title}</h2>
+        <p class="content" set:html={post.content} />
+        <p class="author">{post.author}</p>
+        <p class="date">{processDate ? formattedDate : post.date}</p>
+    </main>
+</MainLayout>
+<style>
+    main {
+        padding: 64px 12px;
+        position: relative;
+        margin-top: 12px;
+        align-self: center;
+        max-width: 90%;
+    }
+    .title {
+        text-decoration: none;
+        color: var(--color-secondary-light);
+    }
+    .author {
+        margin-bottom: 0;
+        margin-top: 8px;
+
+        color: var(--color-text-primary-light);
+
+        font-family: Anjoman Variable;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: right;
+    }
+    .date {
+        margin-bottom: 0;
+        margin-top: 8px;
+        color: var(--color-text-primary-light);
+
+        font-family: Anjoman Variable;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: right;
+    }
+</style>

@@ -1,0 +1,98 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getAllMagazines } from "../../lib/api";
+import Return from "../../components/Return.astro";
+import BookShowcase from "../../components/BookShowcase.astro";
+export async function getStaticPaths() {
+    let mags = await getAllMagazines();
+    return mags.map((mag) => {
+        return { params: { slug: decodeURI(mag.slug) }, props: { mag } };
+    });
+}
+const { slug } = Astro.params;
+const { mag, processDate = false } = Astro.props;
+// const formattedDate = new Date(mag.date).toLocaleDateString("fa-IR", {
+//     month: "long",
+//     year: "numeric",
+// });
+---
+
+<MainLayout>
+    <main>
+        <Return url="/blog/1" />
+        <div class="book-container">
+            <BookShowcase
+                width={500}
+                height={1000}
+                bookImage={mag.bookImage}
+                bookTitle={mag.bookTitle}
+                bookSubtitle={mag.bookSubtitle}
+                publishDate={mag.publishDate}
+                fidiboUrl={mag.fidiboUrl}
+                TaagcheUrl={mag.TaagcheUrl}
+                buyUrl={mag.buyUrl}
+            />
+        </div>
+
+        <section class="content" set:html={mag.content} />
+    </main>
+    <style>
+        .content {
+            margin: 24px 10%;
+            margin-top: 128px;
+        }
+        .content * {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 22px;
+            letter-spacing: 0em;
+            text-align: right;
+        }
+        main {
+            padding: 64px 12px;
+            position: relative;
+            margin-top: 12px;
+            align-self: flex-start;
+            width: 100%;
+        }
+        .book-container {
+            display: flex;
+
+            text-align: center;
+            flex-wrap: wrap;
+            text-align: start;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 280px;
+        }
+        .title {
+            text-decoration: none;
+            color: var(--color-secondary-light);
+        }
+        .author {
+            margin-bottom: 0;
+            margin-top: 8px;
+
+            color: var(--color-text-primary-light);
+
+            font-family: Anjoman Variable;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 19px;
+            letter-spacing: 0em;
+            text-align: right;
+        }
+        .date {
+            margin-bottom: 0;
+            margin-top: 8px;
+            color: var(--color-text-primary-light);
+
+            font-family: Anjoman Variable;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 19px;
+            letter-spacing: 0em;
+            text-align: right;
+        }
+    </style>
+</MainLayout>

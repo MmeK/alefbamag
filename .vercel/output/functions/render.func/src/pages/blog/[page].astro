@@ -1,0 +1,16 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getAllPosts } from "../../lib/api";
+import Posts from "../../components/Posts.astro";
+import PaginationLinks from "../../components/PaginationLinks.astro";
+export async function getStaticPaths({ paginate }) {
+    let posts = await getAllPosts();
+    return paginate(posts, { pageSize: 12 });
+}
+const { page } = Astro.props;
+---
+
+<MainLayout title="وبلاگ">
+    <Posts posts={page.data} />
+    <PaginationLinks url={page.url} />
+</MainLayout>
