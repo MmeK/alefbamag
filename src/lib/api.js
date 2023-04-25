@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
-const API_URL = process.env.WP_URL;
+const API_URL = "https://alefbaaa.ir/graphql"; //TODO: Move this to an env variable
 
 async function fetchAPI(query, { variables } = {}) {
     const headers = { 'Content-Type': 'application/json' };
